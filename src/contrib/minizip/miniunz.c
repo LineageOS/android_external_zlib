@@ -321,7 +321,6 @@ static int do_extract_currentfile(uf,popt_extract_without_path,popt_overwrite,pa
     uInt size_buf;
 
     unz_file_info64 file_info;
-    uLong ratio=0;
     err = unzGetCurrentFileInfo64(uf,&file_info,filename_inzip,sizeof(filename_inzip),NULL,0,NULL,0);
 
     if (err!=UNZ_OK)
@@ -478,7 +477,6 @@ static int do_extract(uf,opt_extract_without_path,opt_overwrite,password)
     uLong i;
     unz_global_info64 gi;
     int err;
-    FILE* fout=NULL;
 
     err = unzGetGlobalInfo64(uf,&gi);
     if (err!=UNZ_OK)
@@ -512,7 +510,6 @@ static int do_extract_onefile(uf,filename,opt_extract_without_path,opt_overwrite
     int opt_overwrite;
     const char* password;
 {
-    int err = UNZ_OK;
     if (unzLocateFile(uf,filename,CASESENSITIVITY)!=UNZ_OK)
     {
         printf("file %s not found in the zipfile\n",filename);
